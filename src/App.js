@@ -2,25 +2,53 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      user: {
+        name: "josh",
+        age: 31
+      }
+    }
+  }
+
+  render(){
+    const { user } = this.state;
+    return (
+      <div className="App">
+        <UserProfile user={user} />
+      </div>
+    );
+
+  }
+
 }
 
+
+function UserProfile(props){
+  return <div>
+    <UserHeading user={props.user} />
+  </div>
+}
+
+function UserHeading(props){
+  return <div>
+    <UserCard user={props.user}/>
+  </div>
+}
+
+function UserCard(props) {
+  return <div>
+    <UserName user={props.user} />
+  </div>
+}
+
+function UserName(props){
+  return <div>
+    <span>{props.user.name}</span>
+    <span>{props.user.age}</span>
+  </div>
+  
+}
 export default App;
